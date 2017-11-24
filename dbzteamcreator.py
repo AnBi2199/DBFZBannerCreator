@@ -27,24 +27,32 @@ def resizeImgToHeight(image, height):
 #ginyu
 #gotenks
 #gohan
-#majinboo
+#majinBoo
 
-leftchar = "gohan-y"
-midchar = "piccolo"
-rightchar = "tenshinhan"
+leftchar = "cell"
+midchar = "freeza"
+rightchar = "majinBoo"
 
 bg_url = "http://dba.bn-ent.net/mode/images/bg_modeTtl.jpg"
 left_url = "http://dba.bn-ent.net/character/images/" + leftchar + "/portrait.png"
 mid_url = "http://dba.bn-ent.net/character/images/" + midchar + "/portrait.png"
 right_url = "http://dba.bn-ent.net/character/images/" + rightchar + "/portrait.png"
 
-character_distance_multiplier = 0.75
-character_height_multiplier = 1.66
+character_distance_multiplier = 0.5
+character_height_multiplier = 3
+
+left_char_bigger = 0
+mid_char_bigger = 0
+right_char_bigger = 0
+
 
 with Image(filename=bg_url) as img:
     character_height = int(img.height * character_height_multiplier)
     with Image(filename=mid_url) as mid:
-        resizeImgToHeight(mid, character_height)
+        if mid_char_bigger == 1:
+          resizeImgToHeight(mid, int(character_height * 1.2))
+        else:
+          resizeImgToHeight(mid, character_height)
         with Image(filename=left_url) as left:
             resizeImgToHeight(left, character_height)
             with Image(filename=right_url) as right:
@@ -56,9 +64,14 @@ with Image(filename=bg_url) as img:
                 rightpos = int(img.width/2 + mid.width/2 - right.width * (1-character_distance_multiplier))
                 midpos = int(img.width/2 - mid.width/2)
 
+                img.gaussian_blur(4, 4)
+
                 img.composite(left, left=leftpos, top=0)
                 img.composite(right, left=rightpos, top=0)
-                img.composite(mid, left=midpos, top=0)
+                if mid_char_bigger:
+                  img.composite(mid, left=midpos, top=0)
+                else:
+                  img.composite(mid, left=midpos, top=0)
 
                 targetWidth = 1500
 
