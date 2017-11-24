@@ -8,15 +8,41 @@ def resizeImgToHeight(image, height):
   print(image.width)
   image.resize(int(float(image.width) * float(scale)), height)
 
+#goku-ss
+#vegeta-ss
+#trunks
+#gohan-y
+#freeza
+#majinboo-z
+#cell
+#kuririn
+#piccolo
+#no16
+#no18
+#goku-ssgss
+#vegeta-ssgss
+#yamcha
+#tenshinhan
+#nappa
+#ginyu
+#gotenks
+#gohan
+#majinboo
+
+leftchar = "gohan-y"
+midchar = "piccolo"
+rightchar = "tenshinhan"
+
 bg_url = "http://dba.bn-ent.net/mode/images/bg_modeTtl.jpg"
-left_url = "http://dba.bn-ent.net/character/images/no16/portrait.png"
-mid_url = "http://dba.bn-ent.net/character/images/gotenks/portrait.png"
-right_url = "http://dba.bn-ent.net/character/images/piccolo/portrait.png"
+left_url = "http://dba.bn-ent.net/character/images/" + leftchar + "/portrait.png"
+mid_url = "http://dba.bn-ent.net/character/images/" + midchar + "/portrait.png"
+right_url = "http://dba.bn-ent.net/character/images/" + rightchar + "/portrait.png"
 
 character_distance_multiplier = 0.75
+character_height_multiplier = 1.66
 
 with Image(filename=bg_url) as img:
-    character_height = int(img.height * 2)
+    character_height = int(img.height * character_height_multiplier)
     with Image(filename=mid_url) as mid:
         resizeImgToHeight(mid, character_height)
         with Image(filename=left_url) as left:
@@ -39,26 +65,3 @@ with Image(filename=bg_url) as img:
                 img.crop(img.width/2 - targetWidth/2, 0, width=targetWidth, height=img.height)
                 #img.crop(leftpos, 0, width=rightpos + right.width/2 - (leftpos - left.width/2), height=img.height)
                 display(img)
-
-
-
-#goku-ss
-#vegeta-ss
-#trunks
-#gohan-y
-#freeza
-#majinboo-z
-#cell
-#kuririn
-#piccolo
-#no16
-#no18
-#goku-ssgss
-#vegeta-ssgss
-#yamcha
-#tenshinhan
-#nappa
-#ginyu
-#gotenks
-#gohan
-#majinboo
