@@ -7,7 +7,7 @@ def resizeImgToHeight(image, height):
   scale = float(height) / float(image.height)
   image.resize(int(float(image.width) * float(scale)), height)
 
-name_array = ["goku-ss", "vegeta-ss", "trunks", "gohan-y", "freeza", "majinBoo-z", "cell", "kuririn", "piccolo", "no16", "no18", "goku-SSGSS", "vegeta-SSGSS", "yamcha", "tenshinhan", "nappa", "ginyu", "gotenks", "gohan", "majinBoo"]        
+name_array = ["goku-SS", "vegeta-SS", "trunks", "gohan-y", "freeza", "majinBoo-z", "cell", "kuririn", "piccolo", "no16", "no18", "goku-SSGSS", "vegeta-SSGSS", "yamcha", "tenshinhan", "nappa", "ginyu", "gotenks", "gohan", "majinBoo"]        
 input_char_left = 1
 input_char_mid = 1
 input_char_right = 1
@@ -76,5 +76,5 @@ with Image(filename=bg_url) as img:
                     img.composite(watermark, left = img.width - watermark.width - 10, top = img.height - watermark.height)
                     
                     print(img.size)
-                    img.save(filename="request-" + leftchar + "-" + midchar + "-" + rightchar + " .png")
+                    img.save(filename="./output/request-" + leftchar + "-" + midchar + "-" + rightchar + ".png")
                     #display(img)
