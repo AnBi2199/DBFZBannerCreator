@@ -20,21 +20,10 @@ leftchar = name_array[input_char_left]
 midchar = name_array[input_char_mid]
 rightchar = name_array[input_char_right]
 
-twitter_header_offset = 75
-
-bg_url = "http://i.imgur.com/tyBEo4s.jpg"
-#bg_url = "http://dba.bn-ent.net/mode/images/bg_modeTtl.jpg"
+bg_url = "http://dba.bn-ent.net/mode/images/bg_modeTtl.jpg"
 left_url = "http://dba.bn-ent.net/character/images/" + leftchar + "/portrait.png"
 mid_url = "http://dba.bn-ent.net/character/images/" + midchar + "/portrait.png"
 right_url = "http://dba.bn-ent.net/character/images/" + rightchar + "/portrait.png"
-
-if input_char_left == 6:
-    left_url = "http://i.imgur.com/Q3zupYJ.png"
-if input_char_mid == 6:
-    mid_url = "http://i.imgur.com/Q3zupYJ.png"
-if input_char_right == 6:
-    right_url = "http://i.imgur.com/Q3zupYJ.png"
-
 
 character_distance_multiplier = 0.5
 character_height_multiplier = 3
@@ -71,13 +60,13 @@ with Image(filename=bg_url) as img:
                     midpos = int(img.width/2 - mid.width/2)
     
                     img.gaussian_blur(4, 4)
-   
-                    img.composite(left, left=leftpos, top= twitter_header_offset)
-                    img.composite(right, left=rightpos, top= twitter_header_offset)
+    
+                    img.composite(left, left=leftpos, top=0)
+                    img.composite(right, left=rightpos, top=0)
                     if mid_char_bigger:
-                      img.composite(mid, left=midpos, top= twitter_header_offset)
+                      img.composite(mid, left=midpos, top=0)
                     else:
-                      img.composite(mid, left=midpos, top= twitter_header_offset)
+                      img.composite(mid, left=midpos, top=0)
 
                     targetWidth = 1500
     
@@ -87,6 +76,5 @@ with Image(filename=bg_url) as img:
                     img.composite(watermark, left = img.width - watermark.width - 10, top = img.height - watermark.height)
                     
                     print(img.size)
-                    img.save(filename="./output/request-" + leftchar + "-" + midchar + "-" + rightchar + ".png")
-                    print("Image Saved: " + leftchar + "-" + midchar + "-" + rightchar)
+                    img.save(filename="./output/output.png")
                     #display(img)
