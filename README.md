@@ -32,4 +32,7 @@ MakeMidCharBigger = 20% size increase on the middle character
 17 = Gotenks
 18 = Ultimate Gohan
 19 = Kid Boo
+20 = Beerus
+21 = Hit
+22 = Goku Black
 
