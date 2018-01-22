@@ -4,10 +4,14 @@ from wand.display import display
 from urllib2 import urlopen
 
 def resizeImgToHeight(image, height):
-  scale = float(height) / float(image.height)
-  image.resize(int(float(image.width) * float(scale)), height)
 
-name_array = ["goku-SS", "vegeta-SS", "trunks", "gohan-y", "freeza", "majinBoo-z", "cell", "kuririn", "piccolo", "no16", "no18", "goku-SSGSS", "vegeta-SSGSS", "yamcha", "tenshinhan", "nappa", "ginyu", "gotenks", "gohan", "majinBoo", "beerus", "hit", "gokubl"]        
+  scale = float(height) / float(image.height)
+  width = int(float(image.width) * float(scale))
+  if width <= 0:
+	width = 1
+  image.resize(width, height)
+
+name_array = ["goku-SS", "vegeta-SS", "trunks", "gohan-y", "freeza", "majinBoo-z", "cell", "kuririn", "piccolo", "no16", "no18", "goku-SSGSS", "vegeta-SSGSS", "yamcha", "tenshinhan", "nappa", "ginyu", "gotenks", "gohan", "majinBoo", "beerus", "hit", "gokubl", "no21"]
 input_char_left = 1
 input_char_mid = 1
 input_char_right = 1
@@ -49,7 +53,8 @@ right_char_bigger = 0
 
 mid_char_bigger = int(float(sys.argv[6]))
 
-
+if input_char_mid == -1:
+	mid_url = "https://i.imgur.com/FP92UMp.png"
 with Image(filename=bg_url) as img:
     character_height = int(img.height * character_height_multiplier)
     with Image(filename=mid_url) as mid:
@@ -65,13 +70,13 @@ with Image(filename=bg_url) as img:
 
                     #print(img.size)
                     #print(left.size)
-    
+
                     leftpos = int(img.width/2 - mid.width/2 - left.width * character_distance_multiplier)
                     rightpos = int(img.width/2 + mid.width/2 - right.width * (1-character_distance_multiplier))
                     midpos = int(img.width/2 - mid.width/2)
-    
+
                     img.gaussian_blur(4, 4)
-   
+
                     img.composite(left, left=leftpos, top= twitter_header_offset)
                     img.composite(right, left=rightpos, top= twitter_header_offset)
                     if mid_char_bigger:
@@ -80,13 +85,14 @@ with Image(filename=bg_url) as img:
                       img.composite(mid, left=midpos, top= twitter_header_offset)
 
                     targetWidth = 1500
-    
+
                     img.crop(img.width/2 - targetWidth/2, 0, width=targetWidth, height=img.height)
                     #img.crop(leftpos, 0, width=rightpos + right.width/2 - (leftpos - left.width/2), height=img.height)
                     #resizeImgToHeight(watermark, 3)
                     img.composite(watermark, left = img.width - watermark.width - 10, top = img.height - watermark.height)
-                    
+
                     print(img.size)
-                    img.save(filename="./output/request-" + leftchar + "-" + midchar + "-" + rightchar + ".png")
+                    #img.save(filename="./output/request-" + leftchar + "-" + midchar + "-" + rightchar + ".png")
+                    img.save(filename="./output/out.png")
                     print("Image Saved: " + leftchar + "-" + midchar + "-" + rightchar)
                     #display(img)
