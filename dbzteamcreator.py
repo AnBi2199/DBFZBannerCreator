@@ -7,7 +7,7 @@ def resizeImgToHeight(image, height):
   scale = float(height) / float(image.height)
   image.resize(int(float(image.width) * float(scale)), height)
 
-name_array = ["goku-SS", "vegeta-SS", "trunks", "gohan-y", "freeza", "majinBoo-z", "cell", "kuririn", "piccolo", "no16", "no18", "goku-SSGSS", "vegeta-SSGSS", "yamcha", "tenshinhan", "nappa", "ginyu", "gotenks", "gohan", "majinBoo", "beerus", "hit", "gokubl"]        
+name_array = ["goku-SS", "vegeta-SS", "trunks", "gohan-y", "freeza", "majinBoo-z", "cell", "kuririn", "piccolo", "no16", "no18", "goku-SSGSS", "vegeta-SSGSS", "yamcha", "tenshinhan", "nappa", "ginyu", "gotenks", "gohan", "majinBoo", "beerus", "hit", "gokubl", "no21"]        
 input_char_left = 1
 input_char_mid = 1
 input_char_right = 1
