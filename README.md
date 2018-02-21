@@ -36,3 +36,5 @@ MakeMidCharBigger = 20% size increase on the middle character
 21 = Hit <br />
 22 = Goku Black <br />
 23 = Android 21 <br />
+24 = Bardock <br />
+25 = Broly <br />
